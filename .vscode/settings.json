@@ -1,0 +1,8 @@
+{
+  "// why": "Interview exercise: no AI inline completions. Normal IntelliSense stays on. Applies only while this folder is open.",
+  "editor.inlineSuggest.enabled": false,
+  "github.copilot.enable": { "*": false },
+  "github.copilot.inlineSuggest.enable": false,
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "cursor.cpp.disabledLanguages": ["python", "markdown", "plaintext", "json", "shellscript"]
+}
