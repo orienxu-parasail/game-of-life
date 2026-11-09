@@ -55,4 +55,5 @@ The board has at least one row and one column. You may update it in place.
 ```sh
 python3 -m unittest tests.test_part1 -v     # this part's tests
 python3 play.py 1 "0 0 0 / 0 1 0 / 0 0 0"
+python3 test.py 1                           # when this passes, Part 2 opens
 ```

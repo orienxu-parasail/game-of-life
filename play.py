@@ -1,17 +1,23 @@
 """Run one part's function on a board typed on the command line.
 
     python3 play.py 1 "0 0 0 / 0 1 0 / 0 0 0"
-    python3 play.py 2 "1 -1 0 / 0 -1 0 / 0 0 0"
-    python3 play.py 3 "1 0 0" 1          # third argument is D
-    python3 play.py 4 "1 0 1" 2          # third argument is N
-    python3 play.py 5 "1 0 0 0 2"
+    python3 play.py PART "row / row / row" [EXTRA ...]
 
-Rows are separated by "/" and cells by spaces.
+Rows are separated by "/" and cells by spaces. Parts that take an extra
+argument say so in their prompt, with an example command.
 """
 
 import sys
 
 import infection
+
+FUNCTIONS = {
+    "1": "time_to_full_infection",
+    "2": "time_to_full_infection_with_immunity",
+    "3": "time_to_stable_state",
+    "4": "time_to_full_infection_threshold",
+    "5": "simulate_competition",
+}
 
 
 def parse(text):
@@ -23,22 +29,20 @@ def main(argv):
         print(__doc__)
         return 2
     part = argv[0]
-    grid = parse(argv[1])
-    extra = [int(x) for x in argv[2:]]
-    func = {
-        "1": infection.time_to_full_infection,
-        "2": infection.time_to_full_infection_with_immunity,
-        "3": infection.time_to_stable_state,
-        "4": infection.time_to_full_infection_threshold,
-        "5": infection.simulate_competition,
-    }.get(part)
-    if func is None:
+    if part not in FUNCTIONS:
         print("part must be 1-5", file=sys.stderr)
         return 2
+    try:
+        func = getattr(infection, FUNCTIONS[part])
+    except AttributeError as exc:
+        print(exc, file=sys.stderr)
+        return 2
+    grid = parse(argv[1])
+    extra = [int(x) for x in argv[2:]]
     for row in grid:
         print(" ".join("%2d" % cell for cell in row))
     result = func(grid, *extra)
-    if part == "5":
+    if isinstance(result, tuple):
         steps, final = result
         print("steps:", steps)
         for row in final:
