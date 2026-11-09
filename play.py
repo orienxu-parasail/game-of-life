@@ -16,6 +16,7 @@ FUNCTIONS = {
     "2": "time_to_full_infection_with_immunity",
     "3": "time_to_stable_state",
     "4": "time_to_full_infection_threshold",
+    "5": "time_to_full_infection_threshold_fast",
 }
 
 
@@ -29,7 +30,7 @@ def main(argv):
         return 2
     part = argv[0]
     if part not in FUNCTIONS:
-        print("part must be 1-4", file=sys.stderr)
+        print("part must be 1-5", file=sys.stderr)
         return 2
     try:
         func = getattr(infection, FUNCTIONS[part])
