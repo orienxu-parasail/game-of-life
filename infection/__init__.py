@@ -13,7 +13,6 @@ _PART_OF = {
     "time_to_full_infection_with_immunity": 2,
     "time_to_stable_state": 3,
     "time_to_full_infection_threshold": 4,
-    "simulate_competition": 5,
 }
 
 __all__ = ["DIRECTIONS"] + list(_PART_OF)

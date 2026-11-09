@@ -7,7 +7,7 @@ Conway's Game of Life, this is a cousin: the neighbourhood is the four
 orthogonal cells instead of eight, and the rules describe an infection rather
 than births and deaths.
 
-There are five parts, and each one adds a rule. Only Part 1 is open when you
+There are four parts, and each one adds a rule. Only Part 1 is open when you
 start. The rest are sealed in `locked/` and open one at a time: when every
 test up to the current part passes, the next part's prompt, stub and tests are
 written into the folder for you.

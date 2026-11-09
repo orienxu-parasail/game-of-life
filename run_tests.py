@@ -16,7 +16,7 @@ import zlib
 
 ROOT = Path(__file__).resolve().parent
 LOCKED = ROOT / "locked"
-LAST_PART = 5
+LAST_PART = 4
 
 
 def is_open(part):
@@ -120,7 +120,7 @@ def main():
                 print("  " + relative)
             print("Next: read rounds/part%d.md, then  python3 test.py %d" % (nxt, nxt))
     elif result.wasSuccessful() and top == LAST_PART and last_part == top:
-        print("\nAll five parts pass. That is everything.")
+        print("\nAll four parts pass. That is everything.")
     return 0 if result.wasSuccessful() else 1
 
 
